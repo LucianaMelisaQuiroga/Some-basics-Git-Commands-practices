@@ -1,0 +1,504 @@
+https://aprendeconalf.es/docencia/git/ejercicios/historial-cambios/
+
+1) Ejercicios de creación y actualización de repositorios
+
+1 - Ejercicio 1
+Configurar Git definiendo el nombre del usuario, el correo electrónico y activar el coloreado de la salida. 
+Mostrar la configuración final.
+
+	$ git config --global user.name "Luciana"
+	$ git config --global user.email "lucianamelisa@gmail.com"
+	$ git config --list 
+	$ git config --global color.ui auto
+
+2 - Ejercicio 2
+Crear un repositorio nuevo con el nombre helloGit y mostrar su contenido.
+
+	$ mkdir helloGit
+	$ cd helloGit/
+	$ git init
+	$ ls -la
+
+3 - Ejercicio 3
+a - Comprobar el estado del repositorio.
+
+	$ git status
+
+b - Crear un fichero indice.txt con el siguiente contenido y visulizar su contenido en la consola:
+
+	$ touch indice.txt
+	$ cat > indice.txt
+		Capítulo 1: Introducción a Git
+		Capítulo 2: Flujo de trabajo básico
+		Capítulo 3: Repositorios remotos
+	ctrl+D
+	$ cat indice.txt
+
+c - Comprobar de nuevo el estado del repositorio.
+
+	$ git status
+
+d - Añadir el fichero a la zona de intercambio temporal.
+
+	$ git add indice.txt
+
+e - Volver a comprobar una vez más el estado del repositorio.
+
+	$ git status
+
+4 - Ejercicio 4
+Realizar un commit de los últimos cambios con el mensaje “Añadido índice del libro.” y ver el estado del repositorio.
+
+	$ git commit -m "Añadido el índice"
+	$ git status
+
+5 - Ejercicio 5
+a - Cambiar el fichero indice.txt para que contenga lo siguiente:
+
+	$ cat > indice.txt (se puede agregar solamente la linea de unidad 3 con el comando 
+"nano indice.txt", pero no pude volver a la consola)
+		Capítulo 1: Introducción a Git
+		Capítulo 2: Flujo de trabajo básico
+		Capítulo 3: Gestión de ramas
+		Capítulo 4: Repositorios remotos
+	ctrl+D
+
+b - Mostrar los cambios con respecto a la última versión guardada en el repositorio.
+
+	$ cat indice.txt
+	$ git diff
+	$ git status
+	$ git add indice.txt
+
+c - Hacer un commit de los cambios con el mensaje “Añadido capítulo 3 sobre gestión de ramas”.
+	
+	$ git commit -m "Añadido unidad 3 al índice"
+	$ git status
+
+6 - Ejercicio 6
+a - Mostrar los cambios de la última versión del repositorio con respecto a la anterior.
+
+	$ git show (otra forma de verlo: "$ git diff be31fa09bb050ee0aadec456fa69d4834c717fc2 01cc9cf039cc04c725d88d46f1521cba584bc52c"
+	1° pego el 1° número de commit y 2° el commit más reciente con el que quiero comprarar las diferencias) gitshow sólo muestra el último cambio
+
+b - Cambiar el mensaje del último commit por “Añadido capítulo 3 sobre gestión de ramas al índice.”
+
+	$ git commit --amend -m "Añado unidad 3 sobre gestión de ramas al índice"
+
+c - Volver a mostrar los últimos cambios del repositorio.
+
+	$ git show
+
+
+2) Ejercicios de manejo del historial de cambios
+
+1 - Ejercicio 1
+a - Mostrar el historial de cambios del repositorio. 
+	
+	$ git log
+
+b - Crear la carpeta capitulos y crear dentro de ella el fichero capitulo1.txt con el siguiente texto.
+	Git es un sistema de control de versiones ideado por Linus Torvalds.
+
+	$ mkdir capitulo1
+	$ cd capitulo1/
+	$ touch capitulo1.txt
+	$ cat > capitulo1.txt (también puedo especificarlo "cat > capitulo1/capitulo1.txt")
+		Git es un sistema de control de versiones ideado por Linus Torvalds
+	ctrl+D
+
+c - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add . (como agregué más de un cambio lo agrego en conjunto, pero es buena práctica agregar y commitear de a 1 cambio a la vez)	
+
+d - Hacer un commit de los cambios con el mensaje “Añadido capítulo 1.”
+
+	$ git commit -m "Añado capítulo 1"
+
+e - Volver a mostrar el historial de cambios del repositorio.
+
+	$ git log
+
+2 - Ejercicio 2
+a - Crear el fichero capitulo2.txt en la carpeta capitulos con el siguiente texto.
+
+	$ cd ..
+	$ touch capitulo2.txt
+
+	El flujo de trabajo básico con Git consiste en: 
+	1- Hacer cambios en el repositorio. 
+	2- Añadir los cambios a la zona de intercambio temporal. 
+	3- Hacer un commit de los cambios.
+
+	$ cat > capitulo2.txt
+		El flujo de trabajo básico con Git consiste en:
+		1- Hacer cambios en el repositorio.
+		2- Añadir los cambios a la zona de intercambio temporal.
+		3- Hacer un commit de los cambios.
+	ctrl+D
+
+b - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add .
+
+c - Hacer un commit de los cambios con el mensaje “Añadido capítulo 2.”
+
+	$ git commit -m "Añado capítulo 2"
+
+d - Mostrar las diferencias entre la última versión y dos versiones anteriores.
+
+	$ git diff HEAD~2..HEAD (otra forma de verlo es: $ git diff b3c12bb139b3055358cd798deefe1b30352058f2 699c3ca11f8a642822ad566ac02fb7cf41444afc
+				1° el n° de commit 2 más atrás y el último commit, muestra lo mismo pero la otra forma es más simple de escribir)
+
+
+3 - Ejercicio 3
+a - Crear el fichero capitulo3.txt en la carpeta capitulos con el siguiente texto.
+
+	$ touch capitulo3.txt
+
+	Git permite la creación de ramas lo que permite tener distintas versiones del mismo proyecto y trabajar de manera simultanea en ellas.
+	$ cat > capitulo3.txt
+		Git permite la creación de ramas lo que permite tener distintas versiones del mismo proyecto y trabajar de manera simultanea en ellas.
+	ctrl+D
+
+b - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add capitulo3.txt	
+
+c - Hacer un commit de los cambios con el mensaje “Añadido capítulo 3.”
+
+	$ git commit -m "Añado capítulo 3"
+
+d - Mostrar las diferencias entre la primera y la última versión del repositorio.
+
+	$ git log
+	$ git diff be31f..HEAD (puedo sólo colocar las 5 caracteres del primer n° de commit)
+ 
+4 - Ejercicio 4
+a - Añadir al final del fichero indice.txt la siguiente línea:
+	Capítulo 5: Conceptos avanzados
+
+	$ echo "Capítulo 5: Conceptos avanzados" >> indice.txt
+
+b - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add .
+
+c - Hacer un commit de los cambios con el mensaje “Añadido capítulo 5 al índice.”.
+
+	$ git commit -m "Añado capítulo 5 al índice"
+
+d - Mostrar quién ha hecho cambios sobre el fichero indice.txt.
+
+	$ git annotate indice.txt (o $ git blame indice.txt, muestran lo mismo)
+
+
+3) Ejercicios de deshacer cambios
+
+1 - Ejercicio 1
+a - Eliminar la última línea del fichero indice.txt y guardarlo.
+
+	$ nano indice.txt (se abre el editor nano)
+		elimino la última linea -> ctrl+X para guardar el cambio -> Y de Yes -> Enter
+		y vuelve a la linea de comandos
+
+b - Comprobar el estado del repositorio.
+
+	$ git status
+
+c - Deshacer los cambios realizados en el fichero indice.txt para volver a la versión anterior del fichero.
+
+	$ git checkout -- indice.txt
+
+d - Volver a comprobar el estado del repositorio.
+
+	$ git status
+
+2 - Ejercicio 2
+a - Eliminar la última línea del fichero indice.txt y guardarlo.
+
+	$ nano indice.txt
+
+b - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add .
+
+c - Comprobar de nuevo el estado del repositorio.
+
+	$ git status
+
+d - Quitar los cambios de la zona de intercambio temporal, pero mantenerlos en el directorio de trabajo. 
+
+	$ git reset indice.txt 
+
+e - Comprobar de nuevo el estado del repositorio.
+
+	$ git status
+
+f - Deshacer los cambios realizados en el fichero indice.txt para volver a la versión anterior del fichero.
+
+	$ git checkout -- indice.txt 
+
+g - Volver a comprobar el estado del repositorio.
+
+	$ git status
+
+3 - Ejercicio 3
+a - Eliminar la última línea del fichero indice.txt y guardarlo.
+
+	$ nano indice.txt
+
+b - Eliminar el fichero capitulos/capitulo3.txt.
+
+	$ rm capitulo3.txt (OJO con el comando rm) 
+
+c - Añadir un fichero nuevo captitulos/capitulo4.txt vacío. 
+
+	$ touch capitulo4.txt
+
+d - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add .
+
+e - Comprobar de nuevo el estado del repositorio.
+
+	$ git status
+
+f - Quitar los cambios de la zona de intercambio temporal, pero mantenerlos en el directorio de trabajo.
+
+	$ git reset
+
+g - Comprobar de nuevo el estado del repositorio.
+
+	$ git status
+
+h - Deshacer los cambios realizados para volver a la versión del repositorio.
+
+	$ git checkout -- .
+	$ git status
+	$ git clean -f
+
+i - Volver a comprobar el estado del repositorio.
+
+	$ git status
+
+4 - Ejercicio 4
+a - Eliminar la última línea del fichero indice.txt y guardarlo.
+
+	$ nano indice.txt
+
+b - Eliminar el fichero capitulos/capitulo3.txt.
+
+	$ rm capitulo3.txt (OJO con el comando rm)
+
+c - Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje “Borrado accidental.”
+
+	$ git add .
+	$ git commit -m "Borrado accidental"
+	$ git status
+
+d - Comprobar el historial del repositorio.
+
+	$ git log
+
+e - Deshacer el último commit pero mantener los cambios anteriores en el directorio de trabajo y la zona de intercambio temporal.
+
+	$ git reset --soft HEAD~1
+
+f - Comprobar el historial y el estado del repositorio.
+
+	$ git status
+
+g - Volver a hacer el commit con el mismo mensaje de antes.
+
+	$ git commit -m "Borrado accidental"
+	$ git status
+	$ git log
+
+h - Deshacer el último commit y los cambios anteriores del directorio de trabajo volviendo a la versión anterior del repositorio.
+
+	$ git reset --hard HEAD~1
+
+i - Comprobar de nuevo el historial y el estado del repositorio.
+
+	$ git log
+	$ git status
+
+
+https://aprendeconalf.es/docencia/git/ejercicios/ramas/
+https://www.git-tower.com/learn/cheat-sheets/vcs-workflow
+	
+4 - Ejercicios de gestión de ramas
+a - Crear una nueva rama bibliografia y mostrar las ramas del repositorio.
+
+	$ git branch bibliografia
+	$ git branch -av
+
+Ejercicio 2
+a - Crear el fichero capitulos/capitulo4.txt y añadir el texto siguiente
+	En este capítulo veremos cómo usar GitHub para alojar repositorios en remoto.
+
+	$ cd capitulo1/
+	$ touch capitulo4.txt
+	$ cat > capitulo4.txt
+		En este capítulo veremos cómo usar GitHub para alojar repositorios en remoto.
+
+b - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add .
+
+c - Hacer un commit con el mensaje “Añadido capítulo 4.”
+
+	$ git commit -m "Añadido capítulo 4"
+
+d - Mostrar la historia del repositorio incluyendo todas las ramas.
+
+	$ git log --graph --all --oneline
+
+3 - Ejercicio 3
+a - Cambiar a la rama bibliografia.
+
+	$ git checkout bibliografia 		
+
+b - Crear el fichero bibliografia.txt y añadir la siguiente referencia
+	Chacon, S. and Straub, B. Pro Git. Apress.
+
+	$ cat > bibliografia.txt
+		Chacon, S. and Straub, B. Pro Git. Apress.
+
+c - Añadir los cambios a la zona de intercambio temporal.
+
+	$ git add .
+
+d - Hacer un commit con el mensaje “Añadida primera referencia bibliográfica.”
+
+	$ git commit -m "Añado primera referencia bibliografica"
+
+e - Mostrar la historia del repositorio incluyendo todas las ramas.
+
+	$ git log --graph --all --oneline
+
+4 - Ejercicio 4
+a - Fusionar la rama bibliografia con la rama master.
+
+	$ git checkout master
+	$ git merge bibliografia
+		vim -> para escribir el commit: esc + i, 
+		-> guardar y volver a la terminal: esc + shift + z + z
+
+b - Mostrar la historia del repositorio incluyendo todas las ramas.
+
+	$ git log --graph --all --oneline
+
+c - Eliminar la rama bibliografia.
+
+	$ git branch -d bibliografia
+
+d - Mostrar de nuevo la historia del repositorio incluyendo todas las ramas.
+
+	$ git log --graph --all --oneline
+
+5 - Ejercicio 5
+a - Crear la rama bibliografia.
+
+	$ git branch bibliografia
+
+b - Cambiar a la rama bibliografia.
+
+	$ git checkout bibliografia	
+
+c - Cambiar el fichero bibliografia.txt para que contenga las siguientes referencias:
+	Scott Chacon and Ben Straub. Pro Git. Apress.
+	Ryan Hodson. Ry’s Git Tutorial. Smashwords (2014)
+
+	$ nano bibliografia.txt
+		Scott Chacon and Ben Straub. Pro Git. Apress.
+		Ryan Hodson. Ry’s Git Tutorial. Smashwords (2014)
+
+d - Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje “Añadida nueva referencia bibliográfica.”
+
+	$ git add .
+	$ git commit -a -m "Añado nueva referencia bibliográfica"
+
+e - Cambiar a la rama master.
+
+	$ git checkout master
+
+f - Cambiar el fichero bibliografia.txt para que contenga las siguientes referencias:
+	Chacon, S. and Straub, B. Pro Git. Apress.
+	Loeliger, J. and McCullough, M. Version control with Git. O’Reilly.
+
+	$ nano bibliografia.txt
+		Chacon, S. and Straub, B. Pro Git. Apress.
+		Loeliger, J. and McCullough, M. Version control with Git. O’Reilly.
+
+g - Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje “Añadida nueva referencia bibliográfica.” 
+
+	$ git add .
+	$ git commit -a -m "Añado nueva referencia bibliográfica"
+
+h - Fusionar la rama bibliografia con la rama master.
+
+	$ git merge bibliografia
+		OJO: CONFLICT (add/add): Merge conflict in bibliografia.txt
+		Auto-merging bibliografia.txt
+		Automatic merge failed; fix conflicts and then commit the result.
+
+i - Resolver el conflicto dejando el fichero bibliografia.txt con las referencias:
+	Chacon, S. and Straub, B. Pro Git. Apress.
+	Loeliger, J. and McCullough, M. Version control with Git. O’Reilly.
+	Hodson, R. Ry’s Git Tutorial. Smashwords (2014)
+
+	$ nano bibliografia.txt
+		Chacon, S. and Straub, B. Pro Git. Apress.
+		Loeliger, J. and McCullough, M. Version control with Git. O’Reilly.
+		Hodson, R. Ry’s Git Tutorial. Smashwords (2014)
+
+j - Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje “Resuelto conflicto de bibliografía.”
+
+	$ git add .
+	$ git commit -a -m "Solucionado conflicto bibliografía"
+
+k - Mostrar la historia del repositorio incluyendo todas las ramas.
+
+	$ git log --graph --all --oneline
+	no tendria que eliminar la rama bibliografía?
+
+
+5 - Ejercicios de repositorios remotos
+Ejercicio 1
+a - Crear un nuevo repositorio público en GitHub con el nombre libro-git.
+	
+	Creo el repositorio en github 	
+
+b - Añadirlo al repositorio local del libro.
+
+	$ git remote add github https://github.com/LucianaMelisaQuiroga/helloGit.git
+	(también podría ser $ git remote add origin https://github.com/LucianaMelisaQuiroga/helloGit.git)
+
+c - Mostrar todos los repositorios remotos configurados.
+
+	$ git remote -v
+
+2 - Ejercicio 2
+a - Añadir los cambios del repositorio local al repositorio remoto de GitHub.
+
+	$ git push github master
+	(también podría ser $ git branch -M main -> $ git push -u origin main)
+	(*para cualquier modificación y actualizacion: $ git push origin master)
+
+b - Acceder a GitHub y comprobar que se han subido los cambios mostrando el historial de versiones.
+
+	chequeado en github	
+
+
+
+
+
+
+
+
+
+
+
+
