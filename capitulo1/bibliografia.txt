@@ -1,1 +1,2 @@
-Chacon, S. and Straub, B. Pro Git. Apress.
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[nano cat > bibliografia.txt[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[biblgrafia.txt
+
