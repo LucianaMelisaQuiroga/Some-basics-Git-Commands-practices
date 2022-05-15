@@ -483,10 +483,9 @@ c - Mostrar todos los repositorios remotos configurados.
 2 - Ejercicio 2
 a - Añadir los cambios del repositorio local al repositorio remoto de GitHub.
 
-	$ git push github master
-	(también podría ser $ git branch -M main -> $ git push -u origin main)
-	(*para cualquier modificación y actualizacion: $ git push origin master)
-
+	$ git push github master (*para cualquier modificación y actualizacion: $ git push github master)
+	(también podría ser $ git branch -M main -> $ git push -u origin main)= segu github, pero no me funcionan los comandos
+	
 b - Acceder a GitHub y comprobar que se han subido los cambios mostrando el historial de versiones.
 
 	chequeado en github	
